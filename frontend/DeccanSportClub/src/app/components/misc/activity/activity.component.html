@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+<br />
+<br />
+<section class="schedule-area section-gap relative" id="schedule">
+  <div class="menu-content col-lg-15">
+    <div class="title text-center">
+      <h1 class="sectionTitle sectionTitle-color">
+        COACHING <span class="sectionTitle sectionTitle-color">& TRAINING</span>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="activityArr.length == 0">
+  <br />
+  <br />
+  <br />
+  <h2
+    class="sectionTitle sectionTitle-color"
+    style="font-size: large; color: antiquewhite"
+  >
+    No Activities Found
+  </h2>
+  <br />
+  <br />
+  <br />
+</div>
+
+<div class="row">
+  <div
+    class="table-wrap col-lg-10"
+    style="text-align: center; margin-left: 8%"
+    *ngFor="let s of activityArr"
+  >
+    <h1 style="color: aqua">{{ s.sportsName }}</h1>
+    <table style="color: white" class="schdule-table table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th class="head" scope="col">BATCH NAME</th>
+          <th class="head" scope="col">TIMINGS</th>
+          <th class="head" scope="col">DAYS</th>
+          <th class="head" scope="col">COACH</th>
+          <th class="head" scope="col">MEMBER CHARGES</th>
+          <th class="head" scope="col">NON-MEMBER CHARGES</th>
+          <th class="head" scope="col">OFFERS</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let b of s.batch">
+          <td>{{ b.batchName }}</td>
+          <td>{{ b.timings }}</td>
+          <td>{{ b.days }}</td>
+          <td>{{ b.coachName }}</td>
+          <td>{{ s.pricing.membersCharges }}</td>
+          <td>{{ s.pricing.nonMemberCharges }}</td>
+          <td>{{ b.offerValues }}%</td>
+        </tr>
+      </tbody>
+    </table>
+    <br /><br />
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,180 @@
+<div class="row">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div [formGroup]="addManager" class="col-sm-8">
+    <mat-card class="example-card bg-dark text-center text-white">
+      <mat-card-title style="color: aqua" class="display-6"
+        >Add Manager</mat-card-title
+      >
+      <br />
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          (change)="checkUserName()"
+          formControlName="userName"
+        /> </mat-form-field
+      ><br />
+      <br />
+      <mat-form-field appearance="fill">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="errorHandling('name', 'required')">
+          You must provide a <strong> Full Name</strong>
+        </mat-error> </mat-form-field
+      ><br />
+      <br />
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          (change)="checkUserEmail()"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          placeholder="exec@example.com"
+          formControlName="email"
+          required
+        />
+        <mat-error *ngFor="let validation of account_validation_messages.email">
+          <mat-error
+            class="error-message"
+            *ngIf="
+              addManager.get('email').hasError(validation.type) &&
+              (addManager.get('email').dirty || addManager.get('email').touched)
+            "
+            >{{ validation.message }}</mat-error
+          >
+        </mat-error> </mat-form-field
+      ><br />
+      <br />
+      <mat-form-field appearance="fill" class="password">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error
+          *ngFor="let validation of account_validation_messages.password"
+        >
+          <mat-error
+            class="error-message"
+            *ngIf="
+              addManager.get('password').hasError(validation.type) &&
+              (addManager.get('password').dirty ||
+                addManager.get('password').touched)
+            "
+            >{{ validation.message }}</mat-error
+          >
+        </mat-error> </mat-form-field
+      ><br />
+      <br />
+      <mat-form-field appearance="fill" class="password">
+        <mat-label>Confirm password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+        <mat-error
+          *ngFor="let validation of account_validation_messages.confirmPassword"
+        >
+          <mat-error
+            class="error-message"
+            *ngIf="
+              (addManager.get('confirmPassword').hasError(validation.type) ||
+                addManager.get('confirmPassword').hasError(validation.type)) &&
+              (addManager.get('confirmPassword').dirty ||
+                addManager.get('confirmPassword').touched)
+            "
+            >{{ validation.message }}</mat-error
+          >
+        </mat-error>
+        <!-- <mat-error *ngIf="addManager.password.invalid">{{getConPasswordErrorMessage()}}</mat-error> --> </mat-form-field
+      ><br />
+      <br />
+      <mat-form-field appearance="fill" required>
+        <mat-label>Mobile</mat-label>
+        <input matInput formControlName="mobile" pattern="^((\\+91-?)|0)?[0-9]{10}$"/> 
+        <mat-error *ngFor="let validation of account_validation_messages.mobile">
+            <mat-error class="error-message"
+            *ngIf="
+              addManager.get('mobile').hasError(validation.type) &&
+              (addManager.get('mobile').dirty || addManager.get('mobile').touched)
+            ">
+            {{ validation.message }}
+            </mat-error>
+        </mat-error>
+        </mat-form-field
+      ><br />
+      <br />
+      <mat-form-field appearance="fill" required>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" />
+        <mat-error *ngFor="let validation of account_validation_messages.address">
+            <mat-error  class="error-message"
+            *ngIf="
+              addManager.get('address').hasError(validation.type) &&
+              (addManager.get('address').dirty || addManager.get('address').touched)
+            ">
+            {{ validation.message }}
+            </mat-error>
+        </mat-error>
+        </mat-form-field
+      ><br />
+      <br />
+      <mat-form-field appearance="fill" required>
+        <mat-label>Blood Group</mat-label>
+        <input matInput formControlName="bloodGrp" /> 
+        <mat-error *ngFor="let validation of account_validation_messages.bloodGrp">
+            <mat-error  class="error-message"
+            *ngIf="
+              addManager.get('bloodGrp').hasError(validation.type) &&
+              (addManager.get('bloodGrp').dirty || addManager.get('bloodGrp').touched)
+            ">
+            {{ validation.message }}
+            </mat-error>
+        </mat-error>
+        </mat-form-field
+      ><br />
+      <br />
+      <mat-form-field appearance="fill" required>
+        <mat-label>Age</mat-label>
+        <input matInput formControlName="age" pattern="^[1-9][0-9]?$|^100$" />
+        <mat-error *ngFor="let validation of account_validation_messages.age">
+            <mat-error class="error-message"
+            *ngIf="
+              addManager.get('age').hasError(validation.type) &&
+              (addManager.get('age').dirty || addManager.get('age').touched)
+            ">
+            {{ validation.message }}
+            </mat-error>
+        </mat-error>
+        </mat-form-field
+      ><br />
+      <br />
+
+      <mat-label>Gender</mat-label>:<br />
+      <mat-radio-group formControlName="gender">
+        <mat-radio-button value="MALE">Male</mat-radio-button> &nbsp;
+        <mat-radio-button value="FEMALE">Female</mat-radio-button> &nbsp;
+        <mat-radio-button value="OTHER"
+          >Other</mat-radio-button
+        > </mat-radio-group
+        
+      >
+     
+
+      <br />
+      <br />
+      <input
+        style="color: white"
+        (change)="onChange($event)"
+        id="f1"
+        type="file"
+        name="file"
+        multiple
+      />
+      <br />
+      <mat-progress-bar *ngIf="status" mode="indeterminate"></mat-progress-bar>
+      <br />
+
+      <button class="btn btn-success" [disabled] = "addManager.invalid"  (click)="registerManager()">
+        Register
+      </button>
+    </mat-card>
+  </div>
+</div>

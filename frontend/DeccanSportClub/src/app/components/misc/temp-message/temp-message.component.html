@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<br><br><br>
+<div *ngIf="status==='FROMREG'" class="alert alert-info" role="alert">
+    <h1 class="alert-heading"><i class="fas fa-check"></i> REGISTRATION SUCCESSFUL !!!</h1>
+    <hr>
+    <p>An email has been sent to your registered email address containing an activation link. Please follow the
+        instructions in the email to activate your account. Once your account has been activated, you will be able to
+        sign in to Deccan Sports Club. </p>
+</div>
+
+<!-- write this in email
+    Please click on the link to activate
+        your account.-->
+
+        <div *ngIf="status==='FROMEMAIL'" class="alert alert-success" role="alert">
+            <h1 class="alert-heading"><i class="fas fa-check-double"></i>  ACTIVATED !!!</h1>
+            <hr>
+            <p>Your account has been activated successfully. You may now sign in to Deccan Sports Club</p>
+            <button class="btn btn-primary" routerLink="/login">Login/Sign In</button>
+        </div>
+        

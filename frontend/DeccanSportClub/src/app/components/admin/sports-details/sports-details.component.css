@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  max-width: 300px;
+  background-color: #0AC2FF;
+}
+
+.report th, .report td {
+  color: black;
+  font-size: larger;
+}
+
+h1 {
+  color: white;
+  font-size: x-large;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=sports-details.component.css.map */

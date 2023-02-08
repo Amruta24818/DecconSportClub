@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+<br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form [formGroup]="addUser" (ngSubmit)="register()" id="f1" class="box" enctype="multipart/form-data" method="post">
+                    <!-- <div id="d1" class="alert alert-danger" role="alert"></div> -->
+
+                    <h1 style="color: cyan">Registration Page</h1>
+                    <input type="text" (change)="checkUserName()" name="username" placeholder="Username" formControlName="userName" required />
+                    <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" name="password" placeholder="Password" formControlName="password" required />
+                    <!-- <div *ngIf="addUser.password.touched && addUser.password.invalid" class="alert alert-danger">
+            <div *ngIf="addUser.password.errors.required">Password is required.</div>
+          </div> -->
+                    <mat-error *ngFor="let validation of account_validation_messages.password">
+                        <mat-error class="error-message" *ngIf="addUser.get('password').hasError(validation.type) && (addUser.get('password').dirty || addUser.get('password').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+
+                    <input type="password" name="conPassword" required formControlName="confirmPassword" placeholder="Confirm Password" />
+                    <mat-error *ngFor="let validation of account_validation_messages.confirmPassword">
+                        <mat-error class="error-message" *ngIf="(addUser.get('confirmPassword').hasError(validation.type)|| addUser.get('confirmPassword').hasError(validation.type)) && (addUser.get('confirmPassword').dirty ||addUser.get('confirmPassword').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                    <input type="text" name="name" placeholder="Name" formControlName="name" required />
+                    <mat-error *ngFor="let validation of account_validation_messages.name">
+                        <mat-error class="error-message" *ngIf="addUser.get('name').hasError(validation.type) && (addUser.get('name').dirty || addUser.get('name').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                    <!-- <mat-error *ngFor="let validation of account_validation_messages.name">
+            <mat-error class="error-message" *ngIf="addUser.get('name').hasError(validation.type) && (addUser.get(name').dirty ||addUser.get('name').touched">{{validation.message}}</mat-error>
+          </mat-error> -->
+                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" (change)="checkUserEmail()" name="email" required placeholder="Email" formControlName="email" />
+                    <mat-error *ngFor="let validation of account_validation_messages.email">
+                        <mat-error class="error-message" *ngIf="addUser.get('email').hasError(validation.type) && (addUser.get('email').dirty || addUser.get('email').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                    <input type="text" name="mobile" placeholder="Mobile No" pattern="^((\\+91-?)|0)?[0-9]{10}$" formControlName="mobile" required />
+                    <mat-error *ngFor="let validation of account_validation_messages.mobile">
+                        <mat-error class="error-message" *ngIf="addUser.get('mobile').hasError(validation.type) && (addUser.get('mobile').dirty || addUser.get('mobile').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                    <input type="text" name="address" placeholder="Address" formControlName="address" required />
+                    <mat-error *ngFor="let validation of account_validation_messages.address">
+                        <mat-error class="error-message" *ngIf="addUser.get('address').hasError(validation.type) && (addUser.get('address').dirty || addUser.get('address').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                    <input type="text" name="bloodGrp" placeholder="BloodGroup" formControlName="bloodGrp" required/>
+                    <mat-error *ngFor="let validation of account_validation_messages.bloodGrp">
+                        <mat-error class="error-message" *ngIf="addUser.get('bloodGrp').hasError(validation.type) && (addUser.get('bloodGrp').dirty || addUser.get('bloodGrp').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                    <input type="text" name="age" placeholder="Age" pattern="^[1-9][0-9]?$|^100$" formControlName="age" required/>
+                    <mat-error *ngFor="let validation of account_validation_messages.age">
+                        <mat-error class="error-message" *ngIf="addUser.get('age').hasError(validation.type) && (addUser.get('age').dirty || addUser.get('age').touched)">{{validation.message}}</mat-error>
+                    </mat-error><br>
+
+                    <span style="color: white">
+           Gender:  <input type="radio" name="gender" placeholder="Male" value="MALE" formControlName="gender" />
+
+            Male
+            <input type="radio" name="gender" value="FEMALE" placeholder="Female" formControlName="gender" />
+            Female
+            <input type="radio" name="gender" value="OTHER" placeholder="Other" formControlName="gender" />
+            Other
+            <br>
+          </span>
+                    <br>
+                    <input style="color:white;" (change)="onChange($event)" id="f1" type="file" name="file" multiple>
+                    <br>
+                    <form [formGroup]="aFormGroup">
+                        <div class=".rc-anchor-normal">
+                            <ngx-recaptcha2 class=".rc-anchor-normal" #captchaElem style="background-color: #15202b;" [siteKey]="siteKey" formControlName="recaptcha">
+                            </ngx-recaptcha2>
+                        </div>
+                    </form>
+                    <input type="submit" value="Register" />
+                    <!-- <div  class="progress">
+            <div style="align-items: center;" class="progress-bar progress-bar-primary progress-bar-striped active"
+              role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="10" style="width:100%"><br>
+              <h2 style="color: white;">Please wait</h2>
+            </div>
+          </div> -->
+                    <mat-progress-bar *ngIf="status" mode="indeterminate"></mat-progress-bar>
+                    <b><a style="color: white" routerLink="/login">Already a user? Click here to login</a></b>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

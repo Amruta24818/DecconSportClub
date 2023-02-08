@@ -1,0 +1,125 @@
+<div class="row" style="width: 100%">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="col-sm-8">
+    <br />
+    <h1>Locked Users</h1>
+    <mat-form-field appearance="standard">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        class="text-white"
+        placeholder="search here..."
+      />
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="Name">
+        <th style="color: white" mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let u">{{ u.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let u">{{ u.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Phone No">
+        <th mat-header-cell *matHeaderCellDef>Phone No</th>
+        <td mat-cell *matCellDef="let u">{{ u.mobile }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let u">{{ u.address }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Registration Date">
+        <th mat-header-cell *matHeaderCellDef>Registration Date</th>
+        <td mat-cell *matCellDef="let u">{{ u.userTimestamp }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let u">
+          <div
+            (click)="lockUnlock(u.userId)"
+            *ngIf="u.loginAttempt < 4"
+            id="buttons"
+            class="btn btn-danger"
+          >
+            LOCK
+          </div>
+          <div
+            (click)="lockUnlock(u.userId)"
+            *ngIf="u.loginAttempt > 3"
+            id="buttons"
+            class="btn btn-success"
+          >
+            UNLOCK
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="center">
+      <div class="container-lg" style="display: none">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row" style="width: 100%">
+                <div class="col-sm-10"></div>
+              </div>
+            </div>
+            <div id="pdfTable" #pdfTable>
+              <table class="table table-bordered text-center" id="excel.table">
+                <thead>
+                  <tr>
+                    <h2>
+                      <b>Locked Users</b>
+                    </h2>
+                  </tr>
+                  <tr class="reportHead">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+                    <th>Address</th>
+                    <th>Registration Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let u of users">
+                    <td>{{ u.name }}</td>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.mobile }}</td>
+                    <td>{{ u.address }}</td>
+                    <td>{{ u.userTimestamp }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <div *ngIf="users.length == 0" style="color: #fff; text-align: center">
+      No Users Locked
+    </div>
+    <button class="btn btn-success" (click)="makePDF()" style="float: right">
+      Generate Report(.pdf)
+    </button>
+    <button
+      class="btn btn-warning"
+      (click)="exportexcel()"
+      style="float: right"
+    >
+      Generate Report(.xlsx)
+    </button>
+  </div>
+</div>

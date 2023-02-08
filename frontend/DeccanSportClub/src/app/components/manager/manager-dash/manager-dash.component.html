@@ -1,0 +1,53 @@
+<div class="row" style="width: 100%;">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="col-sm-10"><br><br>
+    <div class="row">
+
+      <div class="col-md-4 col-xl-4">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h3><i>Enrolled Users</i></h3>
+            <h2 class="text-right"><i class=" f-left"><img
+                  src="https://img.icons8.com/material-sharp/60/ffffff/checked-user-male.png" /></i><span>{{enrolledUser.length}}</span></h2>
+            <p class="m-b-0"><span class="f-right">
+                <br>
+              </span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-4">
+        <div class="card bg-c-yellow order-card">
+          <div class="card-block">
+            <h3 class="m-b-20"><i>Pending Users</i></h3>
+            <h2 class="text-right"><i class=" f-left"><img
+                  src="https://img.icons8.com/material-outlined/48/ffffff/clock.png" /></i><span>{{pendingUser.length}}</span></h2>
+            <p class="m-b-0"><span class="f-right">
+                <br>
+              </span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-4">
+        <div class="card bg-c-pink order-card">
+          <div class="card-block">
+            <h3 class="m-b-20"><i>Rejected Users</i></h3>
+            <h2 class="text-right"><i class=" f-left"><img
+                  src="https://img.icons8.com/material/50/ffffff/delete-user-male.png" /></i><span>{{rejectedUser.length}}</span></h2>
+            <p class="m-b-0"><span class="f-right">
+                <br>
+              </span></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>

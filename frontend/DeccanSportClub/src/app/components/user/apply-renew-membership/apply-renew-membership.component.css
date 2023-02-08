@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
+}
+
+th.mat-header-cell {
+  text-align: center;
+  max-width: 300px;
+  background-color: #0AC2FF;
+}
+
+th {
+  color: white;
+  font-size: larger;
+}
+
+h1 {
+  color: white;
+  font-size: x-large;
+}
+
+.reportHead th,
+.reportHead td {
+  color: black;
+  font-size: larger;
+}
+
+td.mat-cell,
+td.mat-footer-cell {
+  padding: 32px;
+  height: 100px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}/*# sourceMappingURL=apply-renew-membership.component.css.map */

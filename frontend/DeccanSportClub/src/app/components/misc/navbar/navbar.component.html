@@ -1,0 +1,95 @@
+<mat-toolbar color="primary" *ngIf="status === 'USER'">
+  <mat-toolbar-row>
+    <span class="menu-spacer"></span>
+    <div>
+     
+      <a mat-button [routerLink]="'/homepage'"> Home </a>
+      <a mat-button [routerLink]="'/activity'"> Activities </a>
+      <a mat-button [routerLink]="'/gallery'"> Gallery </a>
+      <a mat-button [matMenuTriggerFor]="menuCategory"> Categories </a>
+      <mat-menu #menuCategory="matMenu">
+        <button mat-menu-item [routerLink]="'/sport-category/Indoor'">
+          Indoor
+        </button>
+        <button mat-menu-item [routerLink]="'/sport-category/Outdoor'">
+          Outdoor
+        </button>
+      </mat-menu>
+      <a mat-button [matMenuTriggerFor]="menuClub"> My Club </a>
+      <mat-menu #menuClub="matMenu">
+        <button mat-menu-item routerLink="/aboutUs">About Us</button>
+        <button mat-menu-item routerLink="/contactUs">Contact Us</button>
+        <button mat-menu-item>Privacy & Policy</button>
+        <button mat-menu-item>Terms & Condition</button>
+      </mat-menu>
+    </div>
+    <span class="rightAlign"></span>
+
+    <a mat-button [matMenuTriggerFor]="actionMenu">
+      {{ user.username }}
+    </a>
+
+    <mat-menu #actionMenu="matMenu">
+      <button
+        *ngIf="user.userRole == 'ADMIN'"
+        mat-menu-item
+        [routerLink]="'/admin/admin-dash'"
+      >
+        Dashboard
+      </button>
+      <button
+        *ngIf="user.userRole == 'MANAGER'"
+        mat-menu-item
+        [routerLink]="'/manager/manager-dash'"
+      >
+        Dashboard
+      </button>
+      <button
+        *ngIf="user.userRole == 'USER'"
+        mat-menu-item
+        [routerLink]="'/user/user-dash'"
+      >
+        Dashboard
+      </button>
+
+      <button (click)="logout()" mat-menu-item>Logout</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="status == 'NEWUSER'" color="primary">
+  <mat-toolbar-row>
+    <span class="menu-spacer"></span>
+    <div>
+      
+      <a mat-button [routerLink]="'/homepage'"> Home </a>
+      <a mat-button [routerLink]="'/activity'"> Activities </a>
+      <a mat-button [routerLink]="'/gallery'"> Gallery </a>
+      <a mat-button [matMenuTriggerFor]="menuCategory"> Categories </a>
+      <mat-menu #menuCategory="matMenu">
+        <button mat-menu-item [routerLink]="'/sport-category/Indoor'">
+          Indoor
+        </button>
+        <button mat-menu-item [routerLink]="'/sport-category/Outdoor'">
+          Outdoor
+        </button>
+      </mat-menu>
+      <a mat-button [matMenuTriggerFor]="menuClub"> My Club </a>
+      <mat-menu #menuClub="matMenu">
+        <button mat-menu-item routerLink="/aboutUs">About Us</button>
+        <button mat-menu-item routerLink="/contactUs">Contact Us</button>
+        <button mat-menu-item>Privacy & Policy</button>
+        <button mat-menu-item>Terms & Condition</button>
+      </mat-menu>
+    </div>
+
+    <span class="rightAlign"></span>
+
+    <a mat-button [matMenuTriggerFor]="actionMenu"> Login/Signup </a>
+
+    <mat-menu #actionMenu="matMenu">
+      <button mat-menu-item [routerLink]="'/login'">Login</button>
+      <button mat-menu-item [routerLink]="'/register'">Signup</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

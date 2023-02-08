@@ -1,0 +1,187 @@
+<div class="row" class="row" style="width: 100%">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="col-sm-8">
+    <br />
+    <h1>Enrolled User</h1>
+    <mat-form-field appearance="standard">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        class="text-white"
+        placeholder="search here..."
+      />
+    </mat-form-field>
+    <!-- <form class="form-inline md-form mr-auto mb-4">
+    <input matInput (keyup)="applyFilter($event)" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    <button mdbBtn size="sm" gradient="aqua" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit">Search</button>
+</form> -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="Username">
+        <th style="color: white" mat-header-cell *matHeaderCellDef>Username</th>
+        <td mat-cell *matCellDef="let u">{{ u.userId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Sport Name">
+        <th mat-header-cell *matHeaderCellDef>Sport Name</th>
+        <td mat-cell *matCellDef="let u">{{ u.sportsId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Batch Name">
+        <th mat-header-cell *matHeaderCellDef>Batch Name</th>
+        <td mat-cell *matCellDef="let u">{{ u.batchId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Timmings">
+        <th mat-header-cell *matHeaderCellDef>Timmings</th>
+        <td mat-cell *matCellDef="let u">{{ u.timings }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Days">
+        <th mat-header-cell *matHeaderCellDef>Days</th>
+        <td mat-cell *matCellDef="let u">{{ u.days }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fees">
+        <th mat-header-cell *matHeaderCellDef>fees</th>
+        <td mat-cell *matCellDef="let u">{{ u.fees }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="payment">
+        <th mat-header-cell *matHeaderCellDef>payment</th>
+        <td mat-cell *matCellDef="let u">
+          <div
+            *ngIf="u.paymentStatus == 1 && u.enrolledStatus == 1"
+            id="buttons"
+            class="btn btn-primary"
+          >
+            PAID
+          </div>
+          <div
+            *ngIf="u.paymentStatus == 0"
+            id="buttons"
+            class="btn btn-warning"
+          >
+            UNPAID
+          </div>
+          <div
+            *ngIf="u.paymentStatus == 1 && u.enrolledStatus == 2"
+            id="buttons"
+            class="btn btn-success"
+          >
+            REFUNDING
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Enrolled Status">
+        <th mat-header-cell *matHeaderCellDef>Enrolled Status</th>
+        <td mat-cell *matCellDef="let u">
+          <div
+            *ngIf="u.enrolledStatus == 0"
+            id="buttons"
+            class="btn btn-primary"
+          >
+            PENDING
+          </div>
+          <div
+            *ngIf="u.enrolledStatus == 1"
+            id="buttons"
+            class="btn btn-success"
+          >
+            APPROVED
+          </div>
+          <div
+            *ngIf="u.enrolledStatus == 2"
+            id="buttons"
+            class="btn btn-danger"
+          >
+            REJECTED
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="center">
+      <div class="container-lg" style="display: none">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-10"></div>
+              </div>
+            </div>
+            <div id="pdfTable" #pdfTable>
+              <table class="table table-bordered text-center" id="excel.table">
+                <thead>
+                  <tr>
+                    <h2>
+                      <b> Enrolled Users</b>
+                    </h2>
+                  </tr>
+                  <tr class="reportHead">
+                    <th>User Name</th>
+                    <th>Sport Name</th>
+                    <th>Batch Name</th>
+                    <th>Timming</th>
+                    <th>Days</th>
+                    <th>Enrolled Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let u of user">
+                    <td>{{ u.userId }}</td>
+                    <td>{{ u.sportsId }}</td>
+                    <td>{{ u.batchId }}</td>
+                    <td>{{ u.batchId }}</td>
+                    <td>{{ u.batchId }}</td>
+                    <td>
+                      <div
+                        *ngIf="u.enrolledStatus == 0"
+                        id="buttons"
+                        class="btn btn-primary"
+                      >
+                        PENDING
+                      </div>
+                      <div
+                        *ngIf="u.enrolledStatus == 1"
+                        id="buttons"
+                        class="btn btn-success"
+                      >
+                        APPROVED
+                      </div>
+                      <div
+                        *ngIf="u.enrolledStatus == 2"
+                        id="buttons"
+                        class="btn btn-danger"
+                      >
+                        REJECTED
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br /><br />
+      <button class="btn btn-success" (click)="makePDF()" style="float: right">
+        Generate Report(.pdf)
+      </button>
+      <button
+        class="btn btn-warning"
+        (click)="exportexcel()"
+        style="float: right"
+      >
+        Generate Report(.xlsx)
+      </button>
+    </div>
+  </div>
+</div>

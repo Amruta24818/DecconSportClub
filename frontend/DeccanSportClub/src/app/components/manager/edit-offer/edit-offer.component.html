@@ -1,0 +1,26 @@
+<div class="row" style="width: 100%;">
+    <div class="col-sm-2">
+        <app-sidenav></app-sidenav>
+    </div>
+
+
+    <div class="col-sm-8">
+<form  [formGroup]="editOffer">
+        <mat-card class="example-card bg-dark text-center text-white">
+            <mat-card-title style="color: aqua;" class="display-6">Edit Offer</mat-card-title>
+            <br />
+        
+            <mat-form-field appearance="fill">
+                <mat-label>MemberCharges</mat-label>
+                <input matInput formControlName="membersCharges">
+            </mat-form-field><br />
+            <mat-form-field appearance="fill">
+                <mat-label>nonMemberCharges</mat-label>
+                <input matInput formControlName="nonMemberCharges">
+            </mat-form-field><br />
+        
+            <button class="btn btn-success" (click)="onEditOffers()">Edit Offer</button>
+        </mat-card>
+    </form>
+    </div>
+    </div>

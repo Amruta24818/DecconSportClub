@@ -1,0 +1,159 @@
+<app-navbar></app-navbar>
+<div id="d1">
+<div class="container">
+  <h1>{{ sport.sportsName }}</h1>
+  <div class="row">
+    <!--  <img
+          class="sport_image"
+         src="../../../../assets/{{ sport.imagePath }}.jpg"
+          alt="sport_image"
+        />-->
+    <img class="sport_image" src="{{ sport.imagePath }}" alt="sport_image" />
+  </div>
+
+  <div class="row">
+    <section class="packages-area">
+      <div class="container">
+        <div class="row section-title">
+          <h1 style="color: #0ac2ff" class="sectionTitle">Pricing</h1>
+        </div>
+        <div class="row">
+          <div class="single-package col-lg-6">
+            <div class="thumb relative">
+              <div class="overlay overlay-bg overlay-radius"></div>
+              <img class="img-fluid" src="../../../../assets/card.png" alt="" />
+            </div>
+            <div class="price">
+              <h2>{{ sport.sportsName }}</h2>
+              <h6>Members</h6>
+              <div class="rupee-class">₹</div>
+              <span>{{ pricing.membersCharges }}</span>
+            </div>
+            <br />
+
+            <div *ngIf="pricing.membersCharges!=='Not yet added'" class="btn">
+              <h5 class="abc">Click Hear To Enroll</h5>
+              <a
+                *ngFor="let batch of batches"
+                mat-button 
+                (click)="openDialog(batch.batchId, pricing.membersCharges)"
+                class="genric-btn default-border circle"
+                >{{ batch.batchName }}</a
+              >
+            </div>
+          </div>
+          <div class="single-package col-lg-6">
+            <div class="thumb relative">
+              <div class="overlay overlay-bg overlay-radius"></div>
+              <img class="img-fluid" src="../../../../assets/card.png" alt="" />
+            </div>
+            <div class="price">
+              <h2>{{ sport.sportsName }}</h2>
+              <h6>Non Members</h6>
+              <div class="rupee-class">₹</div>
+              <span>{{ pricing.nonMemberCharges }}</span>
+            </div>
+            <br />
+            <div *ngIf="pricing.nonMemberCharges!=='Not yet added'" class="btn">
+              <h5 class="abc">Click Hear To Enroll</h5>
+
+              <a
+                *ngFor="let batch of batches"
+                mat-button 
+                (click)="openDialog(batch.batchId, pricing.nonMemberCharges)"
+                class="genric-btn default-border circle"
+                >{{ batch.batchName }}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <h1>Days & Timings</h1>
+      <div class="row">
+        <div class="table-wrap col-lg-12">
+          <table class="schdule-table table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th class="head" scope="col">BATCH NAME</th>
+                <th class="head" scope="col">TIMING</th>
+                <th class="head" scope="col">DAYS</th>
+                <th class="head" scope="col">COACH NAME</th>
+                <th class="head" scope="col">INTAKE</th>
+                <th class="head" scope="col">Offers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let batch of batches">
+                <th style="color: white" class="head" scope="col">
+                  {{ batch.batchName }}
+                </th>
+                <th style="color: white" class="head" scope="col">
+                  {{ batch.timings }}
+                </th>
+                <th style="color: white" class="head" scope="col">
+                  {{ batch.days }}
+                </th>
+                <th style="color: white" class="head" scope="col">
+                  {{ batch.coachName }}
+                </th>
+                <th style="color: white" class="head" scope="col">
+                  {{ batch.intake }}
+                </th>
+                <th style="color: white" class="head" scope="col">
+                  <div style="display: flex; justify-content: space-between">
+                    {{ batch.offerValues }}% off
+                    <!-- like -->
+                    <div
+                      class="like"
+                      *ngIf="user && user.userRole && user.userRole != ''"
+                    >
+                      <em
+                        *ngIf="
+                          user_likes.indexOf(batch.batchId) != -1;
+                          else elseBlock
+                        "
+                        (click)="unlike(batch.batchId)"
+                        class="bx bxs-heart"
+                        style="font-size: larger; color: red; cursor: pointer"
+                      ></em>
+                      <ng-template #elseBlock>
+                        <em
+                          class="bx bxs-heart"
+                          (click)="like(batch.batchId)"
+                          style="
+                            font-size: larger;
+                            color: white;
+                            cursor: pointer;
+                          "
+                        ></em>
+                      </ng-template>
+                      {{ batch.likes }}
+                    </div>
+                    <!-- comment -->
+                    <div
+                      class="comment"
+                      *ngIf="user && user.userRole && user.userRole != ''"
+                    >
+                      <em
+                        class="bx bxs-comment-detail"
+                        (click)="openDialogComments(batch.batchId)"
+                        style="cursor: pointer"
+                      ></em>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!--  -->
+  </div>
+</div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,94 @@
+<app-navbar></app-navbar>
+<div class="form-gap"></div>
+<div class="container">
+  <div class="row">
+    <div *ngIf="status === 'OTP'" class="col-md-4 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="text-center">
+            <h1 class="text-center">One Time Password</h1>
+            <p class="text-center">
+              Please enter verification code sent to {{ email }}
+            </p>
+            <div class="panel-body">
+              <form
+                [formGroup]="inputOtp"
+                (ngSubmit)="validate()"
+                class="form-group text-center"
+              >
+                <div class="form-group">
+                  <input
+                    formControlName="otpValue"
+                    class="form-control"
+                    type="text"
+                    name="text"
+                    placeholder="Enter OTP"
+                  />
+                </div>
+                <div class="form-group text-center">
+                  <button class="btn btn-success" type="submit">Validate</button
+                  ><br /><br />
+                  <br /><span class="text-secondary"
+                    >Didn't receive an OTP?</span
+                  ><br />
+                  <button class="btn btn-dark" (click)="sendOtp(email)">
+                    Resend OTP
+                  </button>
+                  <br />
+                  <br />
+                  <span style="color: red"> Otp valid for only 5 minutes.</span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="status === 'FORGETPASS'" class="col-md-4 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="text-center">
+            <h3><i class="fa fa-lock fa-4x"></i></h3>
+            <h2 class="text-center">Forgot Password?</h2>
+            <div class="panel-body">
+              <form
+                [formGroup]="getEmail"
+                (ngSubmit)="resetPass()"
+                id="register-form"
+                role="form"
+                autocomplete="off"
+                class="form"
+                method="post"
+              >
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"
+                      ><i class="glyphicon glyphicon-envelope color-blue"></i
+                    ></span>
+                    <input
+                      id="email"
+                      name="email"
+                      formControlName="forgetValue"
+                      placeholder="email address"
+                      class="form-control"
+                      type="email"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input
+                    name="recover-submit"
+                    class="btn btn-lg btn-primary btn-block"
+                    value="Reset Password"
+                    type="submit"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

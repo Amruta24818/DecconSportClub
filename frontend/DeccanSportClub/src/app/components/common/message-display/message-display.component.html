@@ -1,0 +1,256 @@
+<div id="body">
+  <h1 mat-dialog-title style="text-align: center; color: burlywood">MESSAGE</h1>
+  <!--Approved-->
+  <div *ngIf="status === 'APPROVED'">
+    <mat-dialog-content class="mat-typography">
+      <div class="alert alert-success" role="alert">
+        <h2 class="alert-heading">Congratulations!!!</h2>
+        <h3>Your Enrollment has been approved.</h3>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="background-color: #22303c">
+      <button
+        mat-button
+        mat-dialog-close
+        class="btn btn-danger"
+        style="border: 1px solid red; color: red"
+      >
+        Cancel
+      </button>
+      <button
+        mat-button
+       
+        mat-dialog-close
+        class="btn btn-success"
+        style="border: 1px solid greenyellow; color: greenyellow"
+        (click)="payNow()"
+        cdkFocusInitial
+      >
+        Pay Now
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+  <!--Wait For Approval-->
+  <div *ngIf="status === 'WAITING'">
+    <mat-dialog-content class="mat-typography">
+      <div class="alert alert-primary" role="alert">
+        <h2 class="alert-heading">Wait For Approval!!!</h2>
+        <h3>Your Enrollment is in process.</h3>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="background-color: #22303c">
+      <button
+        mat-button
+        mat-dialog-close
+        class="btn btn-primary"
+        style="border: 1px solid cyan; color: cyan"
+        cdkFocusInitial
+      >
+        OKAY
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+  <!--Rejected-->
+  <div *ngIf="status === 'REJECTED'">
+    <mat-dialog-content class="mat-typography">
+      <div class="alert alert-danger" role="alert">
+        <h2 class="alert-heading">Rejected!!!</h2>
+        <h3>
+          Sorry!!! your enrollment has been rejected due to our batch is full.
+        </h3>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="background-color: #22303c">
+      <button
+        mat-button
+        mat-dialog-close
+        class="btn btn-danger"
+        style="border: 1px solid red; color: red"
+        cdkFocusInitial
+      >
+        OKAY
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+  <!--Not Logged In-->
+  <div *ngIf="status === 'NOTLOGIN'">
+    <mat-dialog-content class="mat-typography">
+      <div class="alert alert-info" role="alert">
+        <h2 class="alert-heading">Not Logged In!!!</h2>
+        <h3>Please!!! Sign in or Register before enrollment.</h3>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="background-color: #22303c">
+      <button
+        mat-button
+        mat-dialog-close
+        class="btn btn-danger"
+        style="border: 1px solid red; color: red"
+      >
+        CANCEL
+      </button>
+      <button
+        mat-button
+        cdkFocusInitial
+        routerLink="/login"
+        mat-dialog-close
+        class="btn btn-success"
+        style="border: 1px solid greenyellow; color: greenyellow"
+      >
+        LOGIN
+      </button>
+
+      <button
+        mat-button
+        routerLink="/register"
+        mat-dialog-close
+        class="btn btn-info"
+        style="border: 1px solid cyan; color: cyan"
+      >
+        REGISTER
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+  <!--Not a member then also selected members features-->
+  <div *ngIf="status === 'NOTMEMBER'">
+    <mat-dialog-content class="mat-typography">
+      <div class="alert alert-secondary" role="alert">
+        <h2 class="alert-heading">Fun Fact!!!</h2>
+        <h3>Sorry!!! You are not a member of this club.</h3>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="background-color: #22303c">
+      <button
+        mat-button
+        mat-dialog-close
+        class="btn btn-danger"
+        style="border: 1px solid red; color: red"
+        cdkFocusInitial
+      >
+        CANCEL
+      </button>
+      <button
+        *ngIf="user.userRole === 'USER'"
+        mat-button
+        mat-dialog-close
+        class="btn btn-primary"
+        routerLink="/user/apply-renew-details"
+        style="border: 1px solid cyan; color: cyan"
+        cdkFocusInitial
+      >
+        Get Membership
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+  <!--Member selecting non member feature-->
+  <div *ngIf="status === 'MEMBERONLY'">
+    <mat-dialog-content class="mat-typography">
+      <div class="alert alert-secondary" role="alert">
+        <h2 class="alert-heading">Fun Fact!!!</h2>
+        <h3>
+          You are a member of this club. Please enjoy the perks of it by
+          selecting correct price.
+        </h3>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="background-color: #22303c">
+      <button
+        mat-button
+        mat-dialog-close
+        class="btn btn-primary"
+        style="border: 1px solid cyan; color: cyan"
+        cdkFocusInitial
+      >
+        OKAY
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+  <!--Already enrolled and paid for batch-->
+  <div *ngIf="status === 'PAID'">
+    <mat-dialog-content class="mat-typography">
+      <div class="alert alert-success" role="alert">
+        <h2 class="alert-heading">Enrolled!!!</h2>
+        <h3>You have already enrolled and paid for this batch.</h3>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="background-color: #22303c">
+      <button
+        mat-button
+        mat-dialog-close
+        class="btn btn-success"
+        style="border: 1px solid greenyellow; color: greenyellow"
+        cdkFocusInitial
+      >
+        OKAY
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+  <!--Already enrolled and paid for batch-->
+  <div *ngIf="status === 'REFUND'">
+    <mat-dialog-content class="mat-typography">
+      <div class="alert alert-danger" role="alert">
+        <h2 class="alert-heading">Sorry for the inconvenience!!!</h2>
+        <h3>
+          You have been removed from this batch. Your fees will be refunded
+          shortly.
+        </h3>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="background-color: #22303c">
+      <button
+        mat-button
+        mat-dialog-close
+        class="btn btn-danger"
+        style="border: 1px solid red; color: white"
+        cdkFocusInitial
+      >
+        OKAY
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+  <!-- comment modal -->
+  <div *ngIf="status === 'COMMENT'">
+    <mat-dialog-content class="mat-typography">
+      <h2 class="alert-heading" style="color: white">Comments..!!</h2>
+
+      <div
+        class="alert alert-success"
+        role="alert"
+        *ngFor="let comment of comments"
+      >
+        <p>
+          {{ comment.commentTimestamp }},
+          <i> @{{ comment.userId.userName }}</i> :
+          <strong> {{ comment.comments }}</strong>
+        </p>
+      </div>
+      <br />
+      <br />
+      <mat-dialog-actions align="end" style="background-color: #22303c">
+        <input type="text" class="form-control" [(ngModel)]="comment" />
+        <button
+          mat-button
+          class="btn btn-success"
+          (click)="addComment()"
+          type="submit"
+          style="
+            border: 1px solid greenyellow;
+            color: greenyellow;
+            margin: 10px;
+          "
+          cdkFocusInitial
+        >
+          Add Comment
+        </button>
+      </mat-dialog-actions>
+    </mat-dialog-content>
+  </div>
+</div>

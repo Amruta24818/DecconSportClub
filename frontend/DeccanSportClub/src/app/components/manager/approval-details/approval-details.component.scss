@@ -1,0 +1,47 @@
+table {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 500px;
+}
+
+th.mat-header-cell {
+    text-align: center;
+    max-width: 300px;
+    background-color: #0AC2FF
+}
+
+th {
+    color: white;
+    font-size: larger;
+}
+
+h1 {
+    color: white;
+    font-size: x-large
+}
+
+#buttons {
+    display: inline-block;
+    margin: 5px;
+}
+
+.reportHead {
+    th,
+    td {
+        color: black;
+        font-size: larger;
+    }
+}
+
+.col-sm-8 {
+    width: 80%;
+}
+
+td.mat-cell,
+td.mat-footer-cell {
+    padding-right: 40px;
+    padding-left: 30px;
+    border-bottom-width: 0px;
+    border-bottom-style: solid;
+}

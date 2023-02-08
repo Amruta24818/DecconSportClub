@@ -1,0 +1,192 @@
+<div class="row" style="width: 100%">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+
+    
+    <div class="col-sm-8">
+    <br>
+    <h1 >Sports Enrolled Details</h1>
+    <mat-form-field appearance="standard">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        class="text-white"
+        placeholder="search here..."
+      />
+    </mat-form-field>
+    <!-- mat table -->
+    <table mat-table [dataSource]= "dataSource" class="mat-elevation-z8">
+      
+        <ng-container matColumnDef="Sport Name">
+          <th mat-header-cell *matHeaderCellDef> Sport Name </th>
+          <td mat-cell *matCellDef="let s"> {{s.sportsName}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Batch Name">
+            <th style="color: white;" mat-header-cell *matHeaderCellDef> Batch Name </th>
+            <td mat-cell *matCellDef="let s"> {{s.batchName}} </td>
+          </ng-container>
+
+
+      <ng-container matColumnDef="Days">
+        <th style="color: white" mat-header-cell *matHeaderCellDef>Days</th>
+        <td mat-cell *matCellDef="let s">{{ s.days }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Timmings">
+        <th style="color: white" mat-header-cell *matHeaderCellDef>Days</th>
+        <td mat-cell *matCellDef="let s">{{ s.timings }}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Coach Name">
+        <th mat-header-cell *matHeaderCellDef>Coach Name</th>
+        <td mat-cell *matCellDef="let s">{{ s.coachName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Fees">
+        <th style="color: white" mat-header-cell *matHeaderCellDef>Fees</th>
+        <td mat-cell *matCellDef="let s">{{ s.fees }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Enrolled Status">
+        <th mat-header-cell *matHeaderCellDef>Enrolled Status</th>
+        <td mat-cell *matCellDef="let s">
+          <button *ngIf="s.enrolledStatus === 0" class="btn btn-primary">
+            PENDING
+          </button>
+          <button *ngIf="s.enrolledStatus === 1" class="btn btn-success">
+            APPROVED
+          </button>
+          <button *ngIf="s.enrolledStatus === 2" class="btn btn-danger">
+            REJECTED
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Payment Status">
+        <th mat-header-cell *matHeaderCellDef>Payment Status</th>
+        <td mat-cell *matCellDef="let s">
+          <button *ngIf="s.paymentStatus === 0" class="btn btn-warning">
+            UNPAID
+          </button>
+          <button
+            *ngIf="s.paymentStatus === 1 && s.enrolledStatus === 2"
+            class="btn btn-success"
+          >
+            REFUNDED
+          </button>
+          <button
+            *ngIf="s.paymentStatus === 1 && s.enrolledStatus === 1"
+            class="btn btn-info"
+          >
+            PAID
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <!-- bootstrap table    -->
+    <div style="display: none" class="center">
+      <div class="container-lg">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row" style="width: 100%">
+                <div style="text-align: center" class="col-sm-10"></div>
+              </div>
+            </div>
+            <div id="pdfTable" #pdfTable>
+              <table class="table table-bordered text-center" id="excel.table">
+                <thead>
+                  <tr>
+                    <h2>
+                      <b>Sports Enrolled Details</b>
+                    </h2>
+                  </tr>
+                  <tr class="reportHead">
+                    <th>Sport Name</th>
+                    <th>Batch Name</th>
+                    <th>Timmings</th>
+                    <th>Day</th>
+                    <th>Coach Name</th>
+                    <th>Fees</th>
+                    <th>Enroll Status</th>
+                    <th>Payment Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of sportEnrolled">
+                    <td>{{ s.sportsName }}</td>
+                    <td>{{ s.batchName }}</td>
+                    <td>{{ s.timings }}</td>
+                    <td>{{ s.days }}</td>
+                    <td>{{ s.coachName }}</td>
+                    <td>{{ s.fees }}</td>
+                    <td>
+                      <button
+                        *ngIf="s.enrolledStatus === 0"
+                        class="btn btn-primary"
+                      >
+                        PENDING
+                      </button>
+                      <button
+                        *ngIf="s.enrolledStatus === 1"
+                        class="btn btn-success"
+                      >
+                        APPROVED
+                      </button>
+                      <button
+                        *ngIf="s.enrolledStatus === 2"
+                        class="btn btn-danger"
+                      >
+                        REJECTED
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        *ngIf="s.paymentStatus === 0"
+                        class="btn btn-warning"
+                      >
+                        UNPAID
+                      </button>
+                      <button
+                        *ngIf="s.paymentStatus === 1 && s.enrolledStatus === 1"
+                        class="btn btn-info"
+                      >
+                        PAID
+                      </button>
+                      <button
+                        *ngIf="s.paymentStatus === 1 && s.enrolledStatus === 2"
+                        class="btn btn-success"
+                      >
+                        REFUNDED
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <button class="btn btn-success" (click)="makePDF()" style="float: right">
+      Generate Report(.pdf)
+    </button>
+    <button
+      class="btn btn-warning"
+      (click)="exportexcel()"
+      style="float: right"
+    >
+      Generate Report(.xlsx)
+    </button>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="row" style="width: 100%">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="col-sm-8">
+    <br />
+    <div class="table-title">
+      <div
+        *ngIf="status === 'NOTASSIGNED'"
+        class="alert alert-danger"
+        role="alert"
+      >
+        <h1 class="alert-heading" style="color: red">NO PRICING !!!</h1>
+        <hr />
+        <p>You have not been assigned any sports yet. Contact ADMIN !!!</p>
+      </div>
+      <div *ngIf="status === 'ASSIGNED'">
+        <div class="row" style="width: 100%">
+          <div class="col-sm-10">
+            <h1>{{sports}} Pricing Details</h1>
+          </div>
+          <div class="col-sm-2">
+            <button
+              type="button"
+              class="btn btn-info add-new"
+              *ngIf="offers.length == 0"
+            >
+              <a style="color: white" routerLink="/manager/addOffer">
+                <i class="fa fa-plus"></i>Add New</a
+              >
+            </button>
+          </div>
+        </div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="ForMembers">
+            <th style="color: white" mat-header-cell *matHeaderCellDef>
+              For Members
+            </th>
+            <td mat-cell *matCellDef="let o">{{ o.membersCharges }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="ForNonMembers">
+            <th mat-header-cell *matHeaderCellDef>For Non-Members</th>
+            <td mat-cell *matCellDef="let o">{{ o.nonMemberCharges }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let o">
+              <a
+                class="edit"
+                style="color: rgb(255, 230, 0)"
+                title="Edit"
+                routerLink="/manager/editOffer/{{ o.priceId }}"
+                data-toggle="tooltip"
+                ><i class="material-icons">&#xE254;</i></a
+              >
+              <a class="delete" (click)="deleteOffer(o.priceId)" title="Delete"
+                ><i class="material-icons">&#xE872;</i></a
+              >
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <div class="center">
+          <div style="display: none" class="center">
+            <div class="container-lg" style="display: none">
+              <div class="table-responsive">
+                <div class="table-wrapper">
+                  <div class="table-title">
+                    <div class="row" style="width: 100%">
+                      <div class="col-sm-10">
+                        <h2 style="text-align: center">
+                          <b> Pricing Details</b>
+                        </h2>
+                      </div>
+                      <div class="col-sm-2"></div>
+                    </div>
+                  </div>
+                  <div id="pdfTable" #pdfTable>
+                    <table
+                      class="table table-bordered text-center"
+                      id="excel.table"
+                    >
+                      <thead>
+                        <tr>
+                          <h2 style="text-align: center">
+                            <b> Pricing Details</b>
+                          </h2>
+                        </tr>
+                        <tr class="reportHead">
+                          <th>For Members</th>
+                          <th>For Non-Members</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngIf="offers.length > 0">
+                          <td>{{ offers[0].membersCharges }}</td>
+                          <td>{{ offers[0].nonMemberCharges }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br /><br />
+        <button
+          class="btn btn-success"
+          (click)="makePDF()"
+          style="float: right"
+        >
+          Generate Report(.pdf)
+        </button>
+        <button
+          class="btn btn-warning"
+          (click)="exportexcel()"
+          style="float: right"
+        >
+          Generate Report(.xlsx)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

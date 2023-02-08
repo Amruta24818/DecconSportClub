@@ -1,0 +1,36 @@
+.table-wrapper {
+  background-color: white;
+  color: white;
+  padding: 20px;
+}
+
+#buttons {
+  display: inline-block;
+  margin: 5px;
+  font-size: larger;
+}
+
+p {
+  color: black;
+}
+
+.container {
+  margin-top: 20px;
+  width: 70%;
+  color: black;
+  margin-left: 34%;
+}
+
+.reportHead th {
+  text-align: center;
+  color: black;
+}
+
+button {
+  text-align: center;
+  margin-left: 645px;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}/*# sourceMappingURL=like-comment-logs-admin.component.css.map */

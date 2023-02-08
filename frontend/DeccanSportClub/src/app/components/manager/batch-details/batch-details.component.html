@@ -1,0 +1,151 @@
+<div class="row" style="width: 100%">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="col-sm-8">
+    <br />
+    <div
+      *ngIf="status === 'NOTASSIGNED'"
+      class="alert alert-danger"
+      role="alert"
+    >
+      <h1 class="alert-heading" style="color: red">NO BATCHES !!!</h1>
+      <hr />
+      <p>You have not been assigned any sports yet. Contact ADMIN !!!</p>
+    </div>
+    <div *ngIf="status === 'ASSIGNED'">
+      <div class="row" style="width: 100%">
+        <div class="col-sm-10">
+          <h1>{{sports}} Batch Details</h1>
+        </div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-info add-new">
+            <a style="color: white" routerLink="/manager/addBatch">
+              <i class="fa fa-plus"></i>Add New</a
+            >
+          </button>
+        </div>
+
+   
+
+        <mat-form-field appearance="standard">
+            <mat-label>Search</mat-label>
+            <input
+              matInput
+              (keyup)="applyFilter($event)"
+              class="text-white"
+              placeholder="search here..."
+            />
+          </mat-form-field>
+   
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="Batch Name">
+          <th style="color: white" mat-header-cell *matHeaderCellDef>
+            Batch Name
+          </th>
+          <td mat-cell *matCellDef="let b">{{ b.batchName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Coach Name">
+          <th mat-header-cell *matHeaderCellDef>Coach Name</th>
+          <td mat-cell *matCellDef="let b">{{ b.coachName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Timmings">
+          <th mat-header-cell *matHeaderCellDef>Timmings</th>
+          <td mat-cell *matCellDef="let b">{{ b.timings }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Days">
+          <th mat-header-cell *matHeaderCellDef>Days</th>
+          <td mat-cell *matCellDef="let b">{{ b.days }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Intake">
+          <th mat-header-cell *matHeaderCellDef>Intake</th>
+          <td mat-cell *matCellDef="let b">{{ b.intake }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Offer">
+          <th mat-header-cell *matHeaderCellDef>Offer</th>
+          <td mat-cell *matCellDef="let b">{{ b.offerValues }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let b">
+            <a
+              class="edit"
+              style="color: rgb(255, 230, 0)"
+              title="Edit"
+              data-toggle="tooltip"
+              routerLink="/manager/editBatch/{{ b.batchId }}"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" (click)="deleteBatch(b.batchId)" title="Delete"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    
+      <div>
+    <div style="display: none" class="center">
+      <div class="container-lg">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row" style="width: 100%">
+                <div class="col-sm-10"></div>
+              </div>
+            </div>
+            <div id="pdfTable" #pdfTable>
+              <table class="table table-bordered text-center" id="excel.table">
+                <thead>
+                  <tr>
+                    <h2>
+                      <b>{{ sports }} Batches</b>
+                    </h2>
+                  </tr>
+                  <tr class="reportHead">
+                    <th>Batch</th>
+                    <th>Timings</th>
+                    <th>Coach Name</th>
+                    <th>Day</th>
+                    <th>Intake</th>
+                    <th>Offer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let b of batches">
+                    <td>{{ b.batchName }}</td>
+                    <td>{{ b.timings }}</td>
+                    <td>{{ b.coachName }}</td>
+                    <td>{{ b.days }}</td>
+                    <td>{{ b.intake }}</td>
+                    <td>{{ b.offerValues }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <button class="btn btn-success" (click)="makePDF()" style="float: right">
+      Generate Report(.pdf)
+    </button>
+    <button
+      class="btn btn-warning"
+      (click)="exportexcel()"
+      style="float: right"
+    >
+      Generate Report(.xlsx)
+    </button>
+ 
+</div>

@@ -1,0 +1,41 @@
+table {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 500px;
+    
+ }
+ th.mat-header-cell {
+    text-align: left;
+    max-width: 300px;
+ //   background-color: rgb(107, 107, 233);
+ background-color:#0AC2FF
+  }
+
+
+th{
+    color: white;
+    font-size: larger;
+}
+h1{
+    color: white;
+    font-size:x-large
+}
+#buttons{
+    display: inline-block;
+    margin: 5px;
+}
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+
+  .reportHead{
+    th,td{
+    color: black;
+    font-size: larger;
+    }
+}
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+  

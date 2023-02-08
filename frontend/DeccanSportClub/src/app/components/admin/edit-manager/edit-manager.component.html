@@ -1,0 +1,48 @@
+<div class="row" style="width: 100%;">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div [formGroup]="addManager" class="col-sm-8">
+    <mat-card class="example-card bg-dark text-center text-white">
+      <mat-card-title style="color: aqua" class="display-6"
+        >Edit Manager</mat-card-title
+      >
+      <br />
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="userName" /> </mat-form-field
+      ><br />
+      <mat-form-field appearance="fill">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" /> </mat-form-field
+      ><br />
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="exec@example.com"
+          formControlName="email"
+        />
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> --> </mat-form-field
+      ><br />
+
+      <mat-form-field appearance="fill">
+        <mat-label>Mobile</mat-label>
+        <input matInput formControlName="mobile" /> </mat-form-field
+      ><br />
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" /> </mat-form-field
+      ><br />
+      <mat-form-field appearance="fill">
+        <mat-label>Sports Name</mat-label>
+        <input matInput formControlName="sportsName" /> </mat-form-field
+      ><br />
+
+      <button class="btn btn-success" (click)="editManager()">
+        Edit Manager
+      </button>
+    </mat-card>
+  </div>
+</div>

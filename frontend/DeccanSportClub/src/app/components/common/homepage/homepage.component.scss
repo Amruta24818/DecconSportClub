@@ -1,0 +1,28 @@
+@media (min-width: 576px) {
+    container {
+        max-width: 540px;
+    }
+}
+
+.sectionTitle-color {
+    color: #0AC2FF;
+}
+
+.sectionTitle {
+    text-transform: capitalize;
+    font-style: italic;
+    font-family: 'Passion One';
+    margin-bottom: 42px;
+    font-size: 50px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.sub-content {
+    font-weight: 50px;
+    text-align: center;
+    font-size: 30px;
+}
+img{
+  object-fit: cover;
+}

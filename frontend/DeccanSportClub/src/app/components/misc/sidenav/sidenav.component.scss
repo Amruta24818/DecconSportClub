@@ -1,0 +1,39 @@
+#dashboard{
+    background-color: #11101D;
+    color: white;
+    &:hover{
+        background-color: white;
+        color: black;
+    }
+}
+
+
+#navList{
+    background-color: #11101D;
+    padding: 3px 25px;
+}
+.links_name{
+   margin: 10px;
+}
+
+.navItems{
+    color: white;
+}
+.navItems:hover{
+    background-color: #FFF ;
+    color: black;
+    border-radius: 10px;
+    width: 190px;
+}
+mat-sidenav{
+    width: 300px; 
+    background-color: #11101D;
+}
+
+#log{
+    &:hover{
+        color: black;
+        background-color: white;
+        border-radius: 10px;
+    }
+}

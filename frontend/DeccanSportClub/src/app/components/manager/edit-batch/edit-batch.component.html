@@ -1,0 +1,79 @@
+<div class="row" style="width: 100%;"> 
+    <div class="col-sm-2">
+        <app-sidenav></app-sidenav>
+    </div>
+
+
+    <div class="col-sm-8">
+<form  [formGroup]="editBatch">
+        <mat-card class="example-card bg-dark text-center text-white">
+            <mat-card-title style="color: aqua;" class="display-6">Edit Batch</mat-card-title>
+            <br />
+        
+          
+            <mat-form-field appearance="fill">
+                <mat-label>Batch Id</mat-label>
+                <input matInput formControlName="batchId">
+            </mat-form-field><br />
+            <mat-form-field appearance="fill">
+                <mat-label>Batch Name</mat-label>
+                <mat-select formControlName="batchName">
+                    <mat-option value="MORNING">
+                        MORNING
+                    </mat-option>
+                    <mat-option value="AFTERNOON">
+                        AFTERNOON
+                    </mat-option>
+                    <mat-option value="EVENING">
+                        EVENING
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+<br />
+            
+<mat-form-field appearance="fill">
+    <mat-label>Timings</mat-label>
+    <mat-select formControlName="timings">
+        <mat-option value="7am-10am">
+            7am-10am
+        </mat-option>
+        <mat-option value="12pm-3pm">
+            12pm-3pm
+        </mat-option>
+        <mat-option value="4pm-7pm">
+            4pm-7pm
+        </mat-option>
+    </mat-select>
+</mat-form-field><br />
+             <mat-form-field appearance="fill" >
+                <mat-label>Coach Name</mat-label>
+                <input matInput formControlName="coachName">
+            </mat-form-field><br />
+            <mat-form-field appearance="fill">
+                <mat-label>Days</mat-label>
+                <mat-select formControlName="days">
+                    <mat-option value="MON-TUE">
+                        MON-TUE
+                    </mat-option>
+                    <mat-option value="WED-THU">
+                        WED-THU
+                    </mat-option>
+                    <mat-option value="FRI-SAT">
+                        FRI-SAT
+                    </mat-option>
+                </mat-select>
+            </mat-form-field><br /> 
+             <mat-form-field appearance="fill">
+                <mat-label>Intake</mat-label>
+                <input matInput formControlName="intake">
+            </mat-form-field><br />
+             <mat-form-field appearance="fill">
+                <mat-label>Offer (%)</mat-label>
+                <input matInput formControlName="offerValues">
+            </mat-form-field><br />
+        
+            <button class="btn btn-success" (click)="editBatches()">Edit Batch</button>
+        </mat-card>
+    </form>
+    </div>
+    </div>

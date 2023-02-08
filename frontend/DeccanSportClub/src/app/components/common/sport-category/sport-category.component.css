@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
+.section-title h1 {
+  text-align: center;
+  width: 100%;
+}
+.section-title .sectionTitle {
+  color: #0ac2ff;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-transform: capitalize;
+  font-style: italic;
+  font-family: "Passion One";
+  font-size: 50px;
+  font-weight: 100;
+}
+
+.sports {
+  align-self: center;
+  justify-content: center;
+}
+.sports .single-package {
+  margin-bottom: 30px;
+}
+
+.activity-image {
+  max-height: 220px;
+  height: 220px;
+  width: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+}
+
+.content-below-card h4 {
+  text-align: center;
+  margin: 10px;
+  color: white;
+  font-size: 20px;
+}/*# sourceMappingURL=sport-category.component.css.map */

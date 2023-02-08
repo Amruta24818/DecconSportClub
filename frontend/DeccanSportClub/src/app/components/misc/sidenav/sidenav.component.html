@@ -1,0 +1,206 @@
+<!-- Admin Sidenav -->
+<div *ngIf="user.userRole == 'ADMIN'">
+  <mat-toolbar id="dashboard">
+    <mat-toolbar-row>
+      <button routerLink="/admin/admin-dash" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>{{user.userRole}}</h1>
+      <span class="menu-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container style="background-color: #22303c">
+    <mat-sidenav #sidenav mode="side" opened>
+      <mat-nav-list id="navList">
+        <a class="navItems" mat-list-item [routerLink]="'/homepage'">
+          <i class="bx bx-home"></i>
+          <span class="links_name">Home</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/admin/manager-details'"
+        >
+          <i class="fa fa-list-ul"></i>
+          <span class="links_name">Manager list</span>
+        </a>
+        <a class="navItems" mat-list-item [routerLink]="'/admin/user-details'">
+          <i class="bx bx-task"></i>
+          <span class="links_name">User Logs</span>
+        </a>
+        <a class="navItems" mat-list-item [routerLink]="'/admin/users'">
+          <i class="fa fa-list-ul"></i>
+          <span class="links_name">Locked Users</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/admin/sports-details'"
+        >
+          <i class="bx bx-pie-chart-alt-2"></i>
+          <span class="links_name">Sports</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/admin/like-comment-logs-admin'"
+        >
+          <i class="bx bx-pie-chart-alt-2"></i>
+          <span class="links_name">Likes/Comments</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/admin/feedback-details'"
+        >
+          <i class="bx bx-user"></i>
+          <span class="links_name">Feedback</span>
+        </a>
+        <a class="navItems" mat-list-item [routerLink]="'/profile-dets'">
+          <i class="bx bx-user"></i>
+          <span class="links_name">Profile</span>
+        </a>
+        <a (click)="logout()" class="navItems" id="log" mat-list-item>
+          <i class="bx bx-log-out" ></i>
+          <span class="links_name">Logout</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- User Sidenav -->
+<div *ngIf="user.userRole == 'USER'">
+  <mat-toolbar id="dashboard">
+    <mat-toolbar-row>
+      <button routerLink="/user/user-dash" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>{{user.userRole}}</h1>
+      <span class="menu-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container style="background-color: #22303c">
+    <mat-sidenav #sidenav mode="side" opened>
+      <mat-nav-list id="navList">
+        <a class="navItems" mat-list-item [routerLink]="'/homepage'">
+          <i class="bx bx-home"></i>
+          <span class="links_name">Home</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/user/enroller-details'"
+        >
+          <i class="fa fa-check-square"></i>
+          <span class="links_name">Sports Enrolled</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/user/membership-details'"
+        >
+          <i class="fa fa-certificate"></i>
+          <span class="links_name">Membership</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/user/apply-renew-details'"
+        >
+          <i class="fa fa-bookmark"></i>
+          <span class="links_name">Apply/Renew</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/user/like-comment-logs'"
+        >
+          <i class="bx bx-pie-chart-alt-2"></i>
+          <span class="links_name">Likes/Comments</span>
+        </a>
+
+        <a class="navItems" mat-list-item [routerLink]="'/profile-dets'">
+          <i class="bx bx-user"></i>
+          <span class="links_name">Profile</span>
+        </a>
+        <a (click)="logout()" class="navItems" id="log" mat-list-item>
+          <i class="bx bx-log-out" id="log_out"></i>
+          <span class="links_name">Logout</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- Manager Sidenav -->
+<div *ngIf="user.userRole == 'MANAGER'">
+  <mat-toolbar id="dashboard">
+    <mat-toolbar-row>
+      <button routerLink="/manager/manager-dash" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>{{user.userRole}}</h1>
+      <span class="menu-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container style="background-color: #22303c">
+    <mat-sidenav #sidenav mode="side" opened>
+      <mat-nav-list id="navList">
+        <a class="navItems" mat-list-item [routerLink]="'/homepage'">
+          <i class="bx bx-home"></i>
+          <span class="links_name">Home</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/manager/batch-details'"
+        >
+          <i class="fa fa-star"></i>
+          <span class="links_name">Batches</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/manager/offer-details'"
+        >
+          <i class="fa fa-money"></i>
+          <span class="links_name">Pricing</span>
+        </a>
+        <a
+          class="navItems"
+          mat-list-item
+          [routerLink]="'/manager/approval-details'"
+        >
+        <i class="fas fa-thumbs-up"></i>
+          <span class="links_name">User Approval</span>
+        </a>
+        <a class="navItems" mat-list-item [routerLink]="'/profile-dets'">
+          <i class="bx bx-user"></i>
+          <span class="links_name">Profile</span>
+        </a>
+        <a (click)="logout()" class="navItems" id="log" mat-list-item>
+          <i class="bx bx-log-out" id="log_out"></i>
+          <span class="links_name">Logout</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

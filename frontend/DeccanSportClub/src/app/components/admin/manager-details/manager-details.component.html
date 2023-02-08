@@ -1,0 +1,126 @@
+<div class="row" style="width: 100%">
+  <div class="col-sm-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="col-sm-8">
+    <br />
+    <div class="col-sm-10">
+
+      <h1 style="text-align: left;">
+      <b>	Manager Details</b>
+
+      </h1>
+    </div>
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-info add-new">
+        <a style="color: white" [routerLink]="'/admin/addManager'">
+          <i class="fa fa-plus"></i> Add New</a
+        >
+      </button>
+    </div>
+    <mat-form-field appearance="standard">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        class="text-white"
+        placeholder="search here..."
+      />
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+    
+
+      <ng-container matColumnDef="Manager Name">
+        <th style="color: white" mat-header-cell *matHeaderCellDef>
+          Manager Name
+        </th>
+        <td mat-cell *matCellDef="let m">{{ m.userName }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Sport Name">
+        <th mat-header-cell *matHeaderCellDef>Sport Name</th>
+        <td mat-cell *matCellDef="let m">{{ m.sportsName }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Hiredate">
+        <th mat-header-cell *matHeaderCellDef>Hiredate</th>
+        <td mat-cell *matCellDef="let m">{{ m.userTimestamp }}</td>
+      </ng-container>
+
+      <!-- Symbol Column-->
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let m">
+          <a
+            class="edit"
+            routerLink="/admin/editManager/{{ m.userId }}"
+            title="Edit"
+            data-toggle="tooltip"
+            ><i class="material-icons">&#xE254;</i></a
+          >
+          <a class="delete" (click)="deleteManager(m.userId)" title="Delete"
+            ><i class="material-icons">&#xE872;</i></a
+          >
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="center" style="display: none">
+      <div class="container-lg">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-10"></div>
+              </div>
+            </div>
+            <div id="pdfTable" #pdfTable>
+              <table class="table table-bordered text-center" id="excel.table">
+                <thead>
+                  <tr>
+                    <h2 style="text-align: center">
+                      <b> Manager Details</b>
+                    </h2>
+                  </tr>
+                  <tr class="reportHead">
+                    <th>Manager Name</th>
+                    <th>Sports Name</th>
+                    <th>Hire date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let m of manager">
+                    <td>{{ m.name }}</td>
+                    <td>{{ m.sportsName }}</td>
+                    <th>{{ m.userTimestamp }}</th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <button class="btn btn-success" (click)="makePDF()" style="float: right">
+      Generate Report(.pdf)
+    </button>
+    <button
+      class="btn btn-warning"
+      (click)="exportexcel()"
+      style="float: right"
+    >
+      Generate Report(.xlsx)
+    </button>
+  </div>
+</div>

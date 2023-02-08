@@ -1,0 +1,69 @@
+<app-navbar> </app-navbar>
+<div class="container">
+  <div class="center">
+    <div>
+      <div class="row section-title">
+        <h1 class="sectionTitle">{{ category }} Sports</h1>
+        <h2 style="color: white" class="sub-content">
+          Remember all those sports and games you played when you were a kid. At
+          DSC, you get to relive those priceless moments and stay in the pink of
+          health at the same time.
+        </h2>
+      </div>
+      <br />
+      <br />
+
+      <div *ngIf="sports.length == 0" class="section-title">
+        <h2
+          style="font-size: 30px; color: antiquewhite; text-align: center"
+          class="sectionTitle"
+        >
+          No Sports Found
+        </h2>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-3">
+        <div class="row sports" *ngFor="let sport of sports">
+          <div class="single-package">
+            <div class="thumb relative">
+              <a routerLink="/sports/{{ sport.sportsId }}">
+                <img
+                  class="img-fluid activity-image"
+                  src="{{ sport.imagePath }}"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="content-below-card">
+              <h4 style="text-align: left">{{ sport.sportsName }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row sports" *ngFor="let sport of sports">
+        <div class="col">
+          <div >
+              <div class="single-package">
+                <div class="thumb relative">
+                  <a routerLink="/sports/{{ sport.sportsId }}">
+                    <img class="img-fluid activity-image" src="{{ sport.imagePath }}" alt="" /></a>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="content-below-card" >
+                  <h4 style="text-align: left;">{{ sport.sportsName }}</h4>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+  </div>
+</div>
+<app-footer></app-footer>

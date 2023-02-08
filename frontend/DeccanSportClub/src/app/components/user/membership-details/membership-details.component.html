@@ -1,0 +1,85 @@
+
+<div class="row" style="width: 100%;">
+    <div class="col-sm-2">
+        <app-sidenav></app-sidenav>
+    </div>
+    
+    <div class="col-sm-8"><br>
+        <h1>Membership Details</h1>
+
+        <table mat-table [dataSource]= "dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="Membership Type">
+              <th style="color: white;" mat-header-cell *matHeaderCellDef>Membership Type </th>
+              <td mat-cell *matCellDef="let m"> {{m.membershipType}}</td>
+            </ng-container>
+                     
+            <ng-container matColumnDef="Start Date">
+              <th mat-header-cell *matHeaderCellDef> Start Date </th>
+              <td mat-cell *matCellDef="let m"> {{m.startDate}}</td>
+            </ng-container>          
+    
+            <ng-container matColumnDef="End Date">
+                <th mat-header-cell *matHeaderCellDef> End Date </th>
+                <td mat-cell *matCellDef="let m"> {{m.endDate}}</td>
+              </ng-container>
+            
+              <ng-container matColumnDef="Cost Paid">
+                <th mat-header-cell *matHeaderCellDef>Cost Paid </th>
+                <td mat-cell *matCellDef="let m"> {{m.costPaid}}</td>
+              </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+           
+          </table>
+
+    <div style="display: none;" class="center">
+        <div class="container-lg">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row"  style="width: 100%;">
+                            <div class="col-sm-10">
+                                <h2>
+                                <b>	Membership Details</b>
+                                </h2>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div id="pdfTable" #pdfTable>
+                    <table class="table table-bordered text-center" id="excel.table">
+                        <thead>
+                            <tr style="text-align: center; border: 0px;">Membership Details</tr>
+                            <tr>
+                                <th>Membership Type</th>
+                                <th>Start Date </th>
+                                <th>End Date</th>
+                                <th>Cost Paid</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr *ngIf="membership.length>0" >
+                                <td >{{membership[0].membershipType}}</td>
+                                <td >{{membership[0].startDate }}</td>
+                                <td >{{membership[0].endDate }}</td>
+                                <td>{{membership[0].costPaid}}</td>
+                            </tr>
+                          
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <button class="btn btn-success" (click)="makePDF();" style="float: right;">Generate Report(.pdf)</button>
+    <button class="btn btn-warning" (click)="exportexcel()" style="float: right;">Generate Report(.xlsx)</button>    
+</div>
+    
+    </div>
+    

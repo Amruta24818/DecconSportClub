@@ -1,0 +1,43 @@
+<div class="row" style="width: 100%;">
+    <div class="col-sm-2">
+        <app-sidenav></app-sidenav>
+    </div>
+
+
+    <div [formGroup]="editSport" class="col-sm-8">
+
+        <mat-card class="example-card bg-dark text-center text-white">
+            <mat-card-title style="color: aqua;" class="display-6">Edit Sports</mat-card-title>
+            <br />
+        
+          
+            <mat-form-field appearance="fill">
+                <mat-label>Sports Id</mat-label>
+                <input matInput formControlName="sportsId">
+            </mat-form-field><br />
+            <mat-form-field appearance="fill">
+                <mat-label>Sports Name</mat-label>
+                <input matInput formControlName="sportsName">
+            </mat-form-field><br />
+            <mat-form-field  appearance="fill">
+                <mat-label>Sports Category</mat-label>
+            <mat-select formControlName="sportsCategory">
+                <mat-option value="INDOOR">Indoor</mat-option>
+                <mat-option value="OUTDOOR">Outdoor</mat-option>
+              </mat-select>
+            </mat-form-field> <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Available Manager</mat-label>
+                <mat-select formControlName="managerId">
+                    <div *ngFor="let m of managers">
+                    <mat-option [value]="m.userId">{{m.name}}</mat-option>
+                   
+                </div>
+                  </mat-select>
+            </mat-form-field><br />
+          
+           
+
+            <button class="btn btn-success" (click)="addSport()">Edit Sports</button>
+        </mat-card>
+    </div>

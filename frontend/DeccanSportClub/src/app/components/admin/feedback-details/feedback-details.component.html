@@ -1,0 +1,112 @@
+
+<div class="row" style="width: 100%; ">
+    <div class="col-sm-2">
+        <app-sidenav></app-sidenav>
+    </div>
+    
+    <div  class="col-sm-8"><br><br>
+        <div *ngIf="!status">
+        <h1>Feedback Details</h1>
+    <table  mat-table [dataSource]= "feedback" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="Name">
+          <th style="color: white;" mat-header-cell *matHeaderCellDef>Name </th>
+          <td mat-cell *matCellDef="let f"> {{f.name}}</td>
+        </ng-container>
+      
+       
+        <ng-container matColumnDef="Address">
+          <th mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let f"> {{f.address }}</td>
+        </ng-container>
+      
+       
+        <ng-container matColumnDef="Rating">
+          <th mat-header-cell *matHeaderCellDef> Rating </th>
+          <td mat-cell *matCellDef="let f"> {{f.rating}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Message">
+            <th mat-header-cell *matHeaderCellDef>Message </th>
+            <td mat-cell *matCellDef="let f"> {{f.message}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Days">
+            <th mat-header-cell *matHeaderCellDef> Days </th>
+            <td mat-cell *matCellDef="let u"> {{u.batchId.days}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Enrolled Status">
+            <th mat-header-cell *matHeaderCellDef> Enrolled Status </th>
+            <td mat-cell *matCellDef="let u"> 
+                <div *ngIf="u.enrolledStatus==0" id="buttons" class="btn btn-primary">
+                    PENDING
+                 </div> 
+                 <div *ngIf="u.enrolledStatus==1" id="buttons" class="btn btn-success">
+                     APPROVED
+                  </div> 
+                  <div *ngIf="u.enrolledStatus==2" id="buttons" class="btn btn-danger">
+                     REJECTED
+                  </div>     
+            </td>
+          </ng-container>
+
+          
+          
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+    <div class="center" style="display: none;">
+        <div class="container-lg">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-10">
+                               
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div id="pdfTable" #pdfTable>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr> <h2><b style="text-align: center;">Feedback Details</b></h2></tr>
+                            <tr class="reportHead">
+                                <th>Name</th>
+                                <th>City</th>
+                                <th>Rating</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr *ngFor="let f of feedback" >
+                                <td >{{f.name}}</td>
+                                <td >{{f.address }}</td>
+                                <td>{{f.rating}}</td>
+                                <td>{{f.message}}</td>
+                                
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+ 
+    </div>
+    <br><br>
+    <button class="btn btn-success" (click)="makePDF();" style="float: right;">Generate Report(.pdf)</button>
+    <!-- <button class="btn btn-warning" (click)="exportexcel()" style="float: right;">Generate Report(.xlsx)</button>     -->
+</div> 
+<div *ngIf="status" class="alert alert-danger  " role="alert">
+    <strong>No feedbacks found.</strong>
+   
+  </div>  
+</div>
+   
