@@ -1,0 +1,5 @@
+projectKey=JavaMajorProject:G5
+serverUrl=http://172.27.12.78
+dashboardUrl=http://172.27.12.78/dashboard/index/JavaMajorProject:G5
+ceTaskId=AX19Cdt-FS-0WdRwnx-B
+ceTaskUrl=http://172.27.12.78/api/ce/task?id=AX19Cdt-FS-0WdRwnx-B
